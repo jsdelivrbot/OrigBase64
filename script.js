@@ -29,7 +29,7 @@ var Int = ["0","1","2","3","4","5","6","7","8","9",
 
 // Generate Random Number
 function GenRand() {
-	amount = Math.pow(64,2)-1
+	amount = Math.pow(64,3)-1
     RandNum = Math.floor(Math.random() * (amount - 0 + 1)) + 0;
 }
 
