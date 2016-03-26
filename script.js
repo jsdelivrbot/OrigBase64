@@ -55,9 +55,9 @@ res64,
 UserInput,
 RandNum;
 
-// Generate Random Number between 0 and (64^4)-1
+// Generate Random Number between 0 and (64^9)-1
 function GenRand() {
-	amount = Math.pow(64,8)-1
+	amount = Math.pow(64,9)-1
 	RandNum = Math.floor(Math.random() * (amount - 0 + 1)) + 0;
 }
 
