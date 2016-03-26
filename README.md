@@ -1,2 +1,2 @@
 # Mini-Penguin
-To view: Please visit: https://raw.githubusercontent.com/PenguinGovernor/Mini-Penguin/master/index.html
+To view: Please visit: https://rawgit.com/PenguinGovernor/Mini-Penguin/master/index.html
