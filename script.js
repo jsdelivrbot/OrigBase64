@@ -55,9 +55,9 @@ res64,
 UserInput,
 RandNum;
 
-// Generate Random Number between 0 and (64^4)-1
+// Generate Random Number between 0 and (64^9)-1
 function GenRand() {
-	amount = Math.pow(64,8)-1
+	amount = Math.pow(64,8)-1;
 	RandNum = Math.floor(Math.random() * (amount - 0 + 1)) + 0;
 }
 
@@ -74,11 +74,17 @@ function IsMoreThan64(number) {
 	if (number >= 64 && number < 4096) {
 		return true;
 	}
+	else {
+		return false;
+	}
 }
 
 function IsMoreThan4096(number) {
 	if (number >= 4096 && number < 262144) {
 		return true;
+	}
+	else {
+		return false;
 	}
 }
 
@@ -86,11 +92,17 @@ function IsMoreThan262144(number) {
 	if (number >= 262144 && number < 16777216) {
 		return true;
 	}
+	else {
+		return false;
+	}
 }
 
 function IsMoreThan16777216(number) {
 	if (number >= 16777216 && number < Math.pow(64,5)) {
 		return true;
+	}
+	else {
+		return false;
 	}
 }
 
@@ -98,11 +110,17 @@ function IsMoreThan64to5(number) {
 if (number >= Math.pow(64,5) && number < Math.pow(64,6)){
 		return true;
 	}
+	else {
+		return false;
+	}
 }
 
 function IsMoreThan64to6(number) {
 	if (number >= Math.pow(64,6) && number < Math.pow(64,7)) {
 		return true;
+	}
+	else {
+		return false;
 	}
 }
 
@@ -110,11 +128,17 @@ function IsMoreThan64to7(number) {
 	if (number >= Math.pow(64,7) && number < Math.pow(64,8)){
 		return true;
 	}
+	else {
+		return false;
+	}
 }
 
 function IsMoreThan64to8(number){
 	if (number >= Math.pow(64,8)) {
 		return true;
+	}
+	else {
+		return false;
 	}
 }
 
@@ -167,14 +191,14 @@ function GenBase64() {
 		remainder262144d = remainder262144c % 1;
 		part262144d = Int[(remainder262144c - remainder262144d)/1];
 
-		NewNumber = part262144z+part262144y+part262144x+part262144a+part262144b+part262144c+part262144d;
+		NewNumber = part262144z2+part262144z1+part262144z+part262144y+part262144x+part262144a+part262144b+part262144c+part262144d;
 		push(RandNum,NewNumber);
 	}
 
 
 	else if (IsMoreThan64to7(RandNum)) {
 		remainder262144z1 = RandNum % Math.pow(64,7)
-		part262144z1 = Int[(RandNum - remainder262144z)/Math.pow(64,7)];
+		part262144z1 = Int[(RandNum - remainder262144z1)/Math.pow(64,7)];
 
 
 		remainder262144z = remainder262144z1 % Math.pow(64,6)
@@ -200,7 +224,7 @@ function GenBase64() {
 		remainder262144d = remainder262144c % 1;
 		part262144d = Int[(remainder262144c - remainder262144d)/1];
 
-		NewNumber = part262144z+part262144y+part262144x+part262144a+part262144b+part262144c+part262144d;
+		NewNumber = part262144z1+part262144z+part262144y+part262144x+part262144a+part262144b+part262144c+part262144d;
 		push(RandNum,NewNumber);
 	}
 	
