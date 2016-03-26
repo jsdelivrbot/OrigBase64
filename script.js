@@ -58,8 +58,18 @@ document.getElementById("new").innerHTML = "Base 64: "+ NewNumber;
 
 // If exists Generate other random number
 function GenBase64() {
+		if (MoreThan4096 === 1) {
+			remainder4096a = RandNum % 4096;
+			part4096a = Int[(RandNum - remainder4096a)/4096];
+			remainder4096b = remainder4096a % 64;
+			part4096b = Int[(remainder4096a - remainder4096b)/64];
+			remainder4096c = remainder4096b % 1;
+			part4096c = Int[(remainder4096b - remainder4096c)/1];
+			NewNumber = part4096a+part4096b+part4096c;
+			push();
+		}
 
-		if(MoreThan64 === 1) {
+		else if(MoreThan64 === 1) {
 			remainder = RandNum % 64;
 			part1 = Int[(RandNum - remainder)/64];
 			part2 = Int[remainder]; 
@@ -76,16 +86,7 @@ else {
 
 
 function GenBase64a() {
-	if (MoreThan4096 === 1) {
-			remainder4096a = RandNum % 4096;
-			part4096a = Int[(RandNum - remainder4096a)/4096];
-			remainder4096b = remainder4096a % 64;
-			part4096b = Int[(remainder4096a - remainder4096b)/64];
-			remainder4096c = remainder4096b % 1;
-			part4096c = Int[(remainder4096b - remainder4096c)/1];
-			NewNumber = part4096a+part4096b+part4096c;
-			push();
-		}
+	
 }
 
 
@@ -112,7 +113,6 @@ function Gen() {
 	IsMoreThan4096();
 	IsMoreThan64();
 	GenBase64();
-	GenBase64a();
 	document.getElementById("new1").innerHTML = "Base 10: "+ RandNum;
 	document.getElementById("array").innerHTML = Used_Int;
 	document.getElementById("array2").innerHTML = Used_Int64;
@@ -125,7 +125,6 @@ function GenFor() {
 	CheckArray();
 	IsMoreThan4096();
 	IsMoreThan64();
-	GenBase64a();
 	GenBase64();
 	document.getElementById("new1").innerHTML = "Base 10: "+ RandNum;
 	document.getElementById("array").innerHTML = Used_Int;
