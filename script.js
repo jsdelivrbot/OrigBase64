@@ -70,79 +70,18 @@ function GenRandUser() {
 
 // Determine how big the number is.
 // For some reason if these functions are grouped together I get a "Maximum Call Stack Size Exceeded" error. So I put them in sepearte functions
-function IsMoreThan64(number) {
-	if (number >= 64 && number < 4096) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-function IsMoreThan4096(number) {
-	if (number >= 4096 && number < 262144) {
-		return true;
-	}
-	else {
-		return false;
+function HowBig(num) {
+	var i = 0, j = 1;
+	while(i<=11) {
+		if (num >= Math.pow(64,i) && num < Math.pow(64,j)) {
+			return i;
+		}
+		else {
+			i++;
+			j++;
+		}
 	}
 }
-
-function IsMoreThan262144(number) {
-	if (number >= 262144 && number < 16777216) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-function IsMoreThan16777216(number) {
-	if (number >= 16777216 && number < Math.pow(64,5)) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-function IsMoreThan64to5(number) {
-if (number >= Math.pow(64,5) && number < Math.pow(64,6)){
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-function IsMoreThan64to6(number) {
-	if (number >= Math.pow(64,6) && number < Math.pow(64,7)) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-function IsMoreThan64to7(number) {
-	if (number >= Math.pow(64,7) && number < Math.pow(64,8)){
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-function IsMoreThan64to8(number){
-	if (number >= Math.pow(64,8)) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-
 
 // Check if Random Number exists in existing array
 function CheckArray() {
@@ -159,20 +98,21 @@ function CheckArray() {
 }
 
 // Convert to base 64 
-function GenBase64() {
-	if (IsMoreThan64to8(RandNum)) {
-		remainder262144z2 = RandNum % Math.pow(64,8)
+function GenBase64(exp) {
+	switch(exp){
+		case 8:
+		remainder262144z2 = RandNum % Math.pow(64,8);
 		part262144z2 = Int[(RandNum - remainder262144z2)/Math.pow(64,8)];
 
-		remainder262144z1 = remainder262144z2 % Math.pow(64,7)
+		remainder262144z1 = remainder262144z2 % Math.pow(64,7);
 		part262144z1 = Int[(remainder262144z2 - remainder262144z1)/Math.pow(64,7)];
 
 
-		remainder262144z = remainder262144z1 % Math.pow(64,6)
+		remainder262144z = remainder262144z1 % Math.pow(64,6);
 		part262144z = Int[(remainder262144z1 - remainder262144z)/Math.pow(64,6)];
 
 
-		remainder262144y = remainder262144z % 1073741824
+		remainder262144y = remainder262144z % 1073741824;
 		part262144y = Int[(remainder262144z - remainder262144y)/1073741824];
 
 		remainder262144x = remainder262144y % 16777216;
@@ -193,19 +133,18 @@ function GenBase64() {
 
 		NewNumber = part262144z2+part262144z1+part262144z+part262144y+part262144x+part262144a+part262144b+part262144c+part262144d;
 		push(RandNum,NewNumber);
-	}
-
-
-	else if (IsMoreThan64to7(RandNum)) {
-		remainder262144z1 = RandNum % Math.pow(64,7)
+		break;
+		
+		case 7:
+		remainder262144z1 = RandNum % Math.pow(64,7);
 		part262144z1 = Int[(RandNum - remainder262144z1)/Math.pow(64,7)];
 
 
-		remainder262144z = remainder262144z1 % Math.pow(64,6)
+		remainder262144z = remainder262144z1 % Math.pow(64,6);
 		part262144z = Int[(remainder262144z1 - remainder262144z)/Math.pow(64,6)];
 
 
-		remainder262144y = remainder262144z % 1073741824
+		remainder262144y = remainder262144z % 1073741824;
 		part262144y = Int[(remainder262144z - remainder262144y)/1073741824];
 
 		remainder262144x = remainder262144y % 16777216;
@@ -226,14 +165,14 @@ function GenBase64() {
 
 		NewNumber = part262144z1+part262144z+part262144y+part262144x+part262144a+part262144b+part262144c+part262144d;
 		push(RandNum,NewNumber);
-	}
-	
-	 else if (IsMoreThan64to6(RandNum)) {
-		remainder262144z = RandNum % Math.pow(64,6)
+		break;
+
+		case 6:	
+		remainder262144z = RandNum % Math.pow(64,6);
 		part262144z = Int[(RandNum - remainder262144z)/Math.pow(64,6)];
 
 
-		remainder262144y = remainder262144z % 1073741824
+		remainder262144y = remainder262144z % 1073741824;
 		part262144y = Int[(remainder262144z - remainder262144y)/1073741824];
 
 		remainder262144x = remainder262144y % 16777216;
@@ -254,11 +193,11 @@ function GenBase64() {
 
 		NewNumber = part262144z+part262144y+part262144x+part262144a+part262144b+part262144c+part262144d;
 		push(RandNum,NewNumber);
-	}
+		break;
 
 
-	 else if (IsMoreThan64to5(RandNum)) {
-		remainder262144y = RandNum % 1073741824
+		case 5:	
+		remainder262144y = RandNum % 1073741824;
 		part262144y = Int[(RandNum - remainder262144y)/1073741824];
 
 		remainder262144x = remainder262144y % 16777216;
@@ -279,9 +218,9 @@ function GenBase64() {
 
 		NewNumber = part262144y+part262144x+part262144a+part262144b+part262144c+part262144d;
 		push(RandNum,NewNumber);
-	}
+		break;
 
-	else if (IsMoreThan16777216(RandNum)) {
+		case 4:
 		remainder262144x = RandNum % 16777216;
 		part262144x = Int[(RandNum - remainder262144x)/16777216];
 
@@ -300,9 +239,9 @@ function GenBase64() {
 
 		NewNumber = part262144x+part262144a+part262144b+part262144c+part262144d;
 		push(RandNum,NewNumber);
-	}
+		break;
 
-	else if (IsMoreThan262144(RandNum)) {
+		case 3:	
 		remainder262144a = RandNum % 262144;
 		part262144a = Int[(RandNum - remainder262144a)/262144];
 
@@ -317,11 +256,9 @@ function GenBase64() {
 
 		NewNumber = part262144a+part262144b+part262144c+part262144d;
 		push(RandNum,NewNumber);
-	}
+		break;
 
-
-
-	else if (IsMoreThan4096(RandNum)) {
+		case 2:	
 		remainder4096a = RandNum % 4096;
 		part4096a = Int[(RandNum - remainder4096a)/4096];
 
@@ -333,21 +270,21 @@ function GenBase64() {
 
 		NewNumber = part4096a+part4096b+part4096c;
 		push(RandNum,NewNumber);
-	}
+		break;
 
-	else if(IsMoreThan64(RandNum)) {
+		case 1:
 		remainder = RandNum % 64;
 		part1 = Int[(RandNum - remainder)/64];
 		part2 = Int[remainder]; 
 		NewNumber = part1+part2;
 		push(RandNum,NewNumber);
-	}
+		break;
 
-	else {
+		case 0:
 		NewNumber = Int[RandNum];
 		push(RandNum,NewNumber);
+		break;
 	}
-
 }
 
 // Converts Base 64 Base 10
@@ -357,75 +294,75 @@ function GenBase10() {
 	DecimalPlaces = array64.length;
 	switch(DecimalPlaces){
 		case 8:
-			Base10Z1 = Int.indexOf(array64[0])*Math.pow(64, 7);
-			Base10Z = Int.indexOf(array64[1])*Math.pow(64, 6);
-			Base10Y = Int.indexOf(array64[2])*Math.pow(64, 5);
-			Base10X = Int.indexOf(array64[3])*Math.pow(64, 4);
-			Base10A = Int.indexOf(array64[4])*Math.pow(64, 3);
-			Base10B = Int.indexOf(array64[5])*Math.pow(64, 2);
-			Base10C = Int.indexOf(array64[6])*Math.pow(64, 1);
-			Base10D = Int.indexOf(array64[7])*Math.pow(64, 0);
-			NewBase10 = Base10Z1+Base10Z+Base10Y+Base10X+Base10A+Base10B+Base10C+Base10D;
-			push(NewBase10,numbers);
-			break;
+		Base10Z1 = Int.indexOf(array64[0])*Math.pow(64, 7);
+		Base10Z = Int.indexOf(array64[1])*Math.pow(64, 6);
+		Base10Y = Int.indexOf(array64[2])*Math.pow(64, 5);
+		Base10X = Int.indexOf(array64[3])*Math.pow(64, 4);
+		Base10A = Int.indexOf(array64[4])*Math.pow(64, 3);
+		Base10B = Int.indexOf(array64[5])*Math.pow(64, 2);
+		Base10C = Int.indexOf(array64[6])*Math.pow(64, 1);
+		Base10D = Int.indexOf(array64[7])*Math.pow(64, 0);
+		NewBase10 = Base10Z1+Base10Z+Base10Y+Base10X+Base10A+Base10B+Base10C+Base10D;
+		push(NewBase10,numbers);
+		break;
 		case 7:
-			Base10Z = Int.indexOf(array64[0])*Math.pow(64, 6);
-			Base10Y = Int.indexOf(array64[1])*Math.pow(64, 5);
-			Base10X = Int.indexOf(array64[2])*Math.pow(64, 4);
-			Base10A = Int.indexOf(array64[3])*Math.pow(64, 3);
-			Base10B = Int.indexOf(array64[4])*Math.pow(64, 2);
-			Base10C = Int.indexOf(array64[5])*Math.pow(64, 1);
-			Base10D = Int.indexOf(array64[6])*Math.pow(64, 0);
-			NewBase10 = Base10Z+Base10Y+Base10X+Base10A+Base10B+Base10C+Base10D;
-			push(NewBase10,numbers);
-			break;
+		Base10Z = Int.indexOf(array64[0])*Math.pow(64, 6);
+		Base10Y = Int.indexOf(array64[1])*Math.pow(64, 5);
+		Base10X = Int.indexOf(array64[2])*Math.pow(64, 4);
+		Base10A = Int.indexOf(array64[3])*Math.pow(64, 3);
+		Base10B = Int.indexOf(array64[4])*Math.pow(64, 2);
+		Base10C = Int.indexOf(array64[5])*Math.pow(64, 1);
+		Base10D = Int.indexOf(array64[6])*Math.pow(64, 0);
+		NewBase10 = Base10Z+Base10Y+Base10X+Base10A+Base10B+Base10C+Base10D;
+		push(NewBase10,numbers);
+		break;
 		case 6:
-			Base10Y = Int.indexOf(array64[0])*Math.pow(64, 5);
-			Base10X = Int.indexOf(array64[1])*Math.pow(64, 4);
-			Base10A = Int.indexOf(array64[2])*Math.pow(64, 3);
-			Base10B = Int.indexOf(array64[3])*Math.pow(64, 2);
-			Base10C = Int.indexOf(array64[4])*Math.pow(64, 1);
-			Base10D = Int.indexOf(array64[5])*Math.pow(64, 0);
-			NewBase10 = Base10Y+Base10X+Base10A+Base10B+Base10C+Base10D;
-			push(NewBase10,numbers);
-			break;
+		Base10Y = Int.indexOf(array64[0])*Math.pow(64, 5);
+		Base10X = Int.indexOf(array64[1])*Math.pow(64, 4);
+		Base10A = Int.indexOf(array64[2])*Math.pow(64, 3);
+		Base10B = Int.indexOf(array64[3])*Math.pow(64, 2);
+		Base10C = Int.indexOf(array64[4])*Math.pow(64, 1);
+		Base10D = Int.indexOf(array64[5])*Math.pow(64, 0);
+		NewBase10 = Base10Y+Base10X+Base10A+Base10B+Base10C+Base10D;
+		push(NewBase10,numbers);
+		break;
 		case 5:
-			Base10X = Int.indexOf(array64[0])*Math.pow(64, 4);
-			Base10A = Int.indexOf(array64[1])*Math.pow(64, 3);
-			Base10B = Int.indexOf(array64[2])*Math.pow(64, 2);
-			Base10C = Int.indexOf(array64[3])*Math.pow(64, 1);
-			Base10D = Int.indexOf(array64[4])*Math.pow(64, 0);
-			NewBase10 = Base10X+Base10A+Base10B+Base10C+Base10D;
-			push(NewBase10,numbers);
-			break;
+		Base10X = Int.indexOf(array64[0])*Math.pow(64, 4);
+		Base10A = Int.indexOf(array64[1])*Math.pow(64, 3);
+		Base10B = Int.indexOf(array64[2])*Math.pow(64, 2);
+		Base10C = Int.indexOf(array64[3])*Math.pow(64, 1);
+		Base10D = Int.indexOf(array64[4])*Math.pow(64, 0);
+		NewBase10 = Base10X+Base10A+Base10B+Base10C+Base10D;
+		push(NewBase10,numbers);
+		break;
 		case 4:
-			Base10A = Int.indexOf(array64[0])*Math.pow(64, 3);
-			Base10B = Int.indexOf(array64[1])*Math.pow(64, 2);
-			Base10C = Int.indexOf(array64[2])*Math.pow(64, 1);
-			Base10D = Int.indexOf(array64[3])*Math.pow(64, 0);
-			NewBase10 = Base10A+Base10B+Base10C+Base10D;
-			push(NewBase10,numbers);
-			break;
+		Base10A = Int.indexOf(array64[0])*Math.pow(64, 3);
+		Base10B = Int.indexOf(array64[1])*Math.pow(64, 2);
+		Base10C = Int.indexOf(array64[2])*Math.pow(64, 1);
+		Base10D = Int.indexOf(array64[3])*Math.pow(64, 0);
+		NewBase10 = Base10A+Base10B+Base10C+Base10D;
+		push(NewBase10,numbers);
+		break;
 		case 3:
-			Base10B = Int.indexOf(array64[0])*Math.pow(64, 2);
-			Base10C = Int.indexOf(array64[1])*Math.pow(64, 1);
-			Base10D = Int.indexOf(array64[2])*Math.pow(64, 0);
-			NewBase10 = Base10B+Base10C+Base10D;
-			push(NewBase10,numbers);
-			break;
+		Base10B = Int.indexOf(array64[0])*Math.pow(64, 2);
+		Base10C = Int.indexOf(array64[1])*Math.pow(64, 1);
+		Base10D = Int.indexOf(array64[2])*Math.pow(64, 0);
+		NewBase10 = Base10B+Base10C+Base10D;
+		push(NewBase10,numbers);
+		break;
 		case 2:
-			Base10C = Int.indexOf(array64[0])*Math.pow(64, 1);
-			Base10D = Int.indexOf(array64[1])*Math.pow(64, 0);
-			NewBase10 = Base10C+Base10D;
-			push(NewBase10,numbers);
-			break;
+		Base10C = Int.indexOf(array64[0])*Math.pow(64, 1);
+		Base10D = Int.indexOf(array64[1])*Math.pow(64, 0);
+		NewBase10 = Base10C+Base10D;
+		push(NewBase10,numbers);
+		break;
 		case 1: 
-			Base10D = Int.indexOf(array64[0])*Math.pow(64, 0);
-			NewBase10 = Base10D;
-			push(NewBase10,numbers);
-			break;
+		Base10D = Int.indexOf(array64[0])*Math.pow(64, 0);
+		NewBase10 = Base10D;
+		push(NewBase10,numbers);
+		break;
 		default:
-			alert("Invalid Input");
+		alert("Invalid Input");
 	} 
 }
 
@@ -448,7 +385,7 @@ function WriteToDoc(BaseTen,BaseSixFour) {
 function Gen() {
 	GenRand();
 	CheckArray();
-	GenBase64();
+	GenBase64(HowBig(RandNum));
 	WriteToDoc(RandNum,NewNumber)
 }
 
@@ -457,7 +394,7 @@ function GenFor() {
 	for (var j = 0;j<=count;j++){
 		GenRand();
 		CheckArray();
-		GenBase64();
+		GenBase64(HowBig(RandNum));
 		WriteToDoc(RandNum,NewNumber);
 	}
 }
@@ -477,7 +414,7 @@ function findsixtyfour() {
 
 function User() {
 	GenRandUser();
-	GenBase64();
+	GenBase64(HowBig(RandNum));
 	WriteToDoc(RandNum,NewNumber);
 }
 
